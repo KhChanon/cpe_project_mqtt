@@ -33,9 +33,9 @@ class mqtt_publisher:
             Temp = data[2]
             Thermal = data[3]
             
-            self.publish("SENSOR/HUMIDITY", self.nodeID+","+str(Time)+","+str(Humidity))
-            self.publish("SENSOR/TEMP", self.nodeID+","+str(Time)+","+str(Temp))
-            self.publish("SENSOR/THERMAL", self.nodeID+","+str(Time)+","+str(Thermal))
+            self.publish("SENSOR/HUMIDITY", self.nodeID+";"+str(Time)+";"+str(Humidity))
+            self.publish("SENSOR/THERMAL", self.nodeID+";"+str(Time)+";"+str(Thermal))
+            self.publish("SENSOR/TEMP", self.nodeID+";"+str(Time)+";"+str(Temp))
             
     def disconnect(self):
         self.client.loop_stop()

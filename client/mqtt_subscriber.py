@@ -18,7 +18,8 @@ def on_message(client, userdata, msg):
     print('Topic:'+ msg.topic + ' message:' + msg.payload.decode("utf-8", "strict"))
     #save the data to database ... 
     #code below
-    #insert_DB("sensor_records", msg)
+    insert_DB("sensor_records", msg, msg.topic)
+
     
 
 client = mqtt.Client()
