@@ -2,6 +2,11 @@
 import paho.mqtt.client as mqtt
 
 from sensor import *
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+HOST = os.getenv('HOST_MQTT')
 
 class mqtt_publisher:
     
@@ -40,7 +45,7 @@ class mqtt_publisher:
 if __name__ == "__main__":
     
     #eclipse mosquitto mqtt broker
-    iot_node_1 = mqtt_publisher("1001","mqtt.eclipseprojects.io", 1883)
+    iot_node_1 = mqtt_publisher("1002",HOST,1883)
 
     iot_node_1.read_sensor_data()
     
