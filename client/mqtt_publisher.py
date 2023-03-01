@@ -5,7 +5,8 @@ from sensor import *
 
 class mqtt_publisher:
     
-    def __init__(self,host,port=1883):
+    def __init__(self,nodeID,host,port=1883):
+        self.nodeID = nodeID
         self.host = host
         self.port = port
         self.client = mqtt.Client()
@@ -27,9 +28,9 @@ class mqtt_publisher:
             Temp = data[2]
             Thermal = data[3]
             
-            self.publish("SENSOR/HUMIDITY",Humidity)
-            self.publish("SENSOR/TEMP",Temp)
-            self.publish("SENSOR/THERMAL",Thermal)
+            self.publish("SENSOR/HUMIDITY", self.nodeID+","+str(Time)+","+str(Humidity))
+            self.publish("SENSOR/TEMP", self.nodeID+","+str(Time)+","+str(Temp))
+            self.publish("SENSOR/THERMAL", self.nodeID+","+str(Time)+","+str(Thermal))
             
     def disconnect(self):
         self.client.loop_stop()
@@ -39,11 +40,12 @@ class mqtt_publisher:
 if __name__ == "__main__":
     
     #eclipse mosquitto mqtt broker
-    iot_node_1 = mqtt_publisher("mqtt.eclipseprojects.io",1883)
-    
+    iot_node_1 = mqtt_publisher("1001","mqtt.eclipseprojects.io", 1883)
+
     iot_node_1.read_sensor_data()
     
     
+
     
     
     

@@ -1,5 +1,7 @@
 import paho.mqtt.client as mqtt
 
+from database import *
+
 host = "mqtt.eclipseprojects.io"
 port = 1883
 
@@ -12,11 +14,11 @@ def on_connect(client, userdata, flags, rc):
         client.subscribe(topic)
         
     
-def on_message(client, userdata,msg):
-    print(msg.payload.decode("utf-8", "strict"))
-    
+def on_message(client, userdata, msg):
+    print('Topic:'+ msg.topic + ' message:' + msg.payload.decode("utf-8", "strict"))
     #save the data to database ... 
     #code below
+    #insert_DB("sensor_records", msg)
     
 
 client = mqtt.Client()
