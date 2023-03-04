@@ -17,5 +17,4 @@ client.max_payload_size = 250
 client.on_connect = on_connect
 client.on_message = on_message
 client.connect(host,port)
-client.publish("BROKER/LOGGING", f"Subscriber {socket.gethostname()} with IP {socket.gethostbyname(socket.gethostname())} connected to broker")
 client.loop_forever()
