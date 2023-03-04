@@ -51,7 +51,7 @@ if __name__ == "__main__":
     print("Your Computer Name is: " + hostname)
     print("Your Computer IP Address is: " + IPAddr)
     iot_id = input("Enter IoT Node ID (Blank to random): ")
-    if iot_id == "" or not iot_id.isdigit():
+    if iot_id == "" or not iot_id.isdigit() or len(iot_id) != 4:
         iot_id = str(random.randint(1000,9999))
 
     #eclipse mosquitto mqtt broker

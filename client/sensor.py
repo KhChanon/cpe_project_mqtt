@@ -1,12 +1,15 @@
-
 import csv
 import time
+import random
 
 def ReadSensor():
     with open('../data/SampleInput.csv', 'r') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
         # Skip the header row
         headings = next(reader)
+        randomNum = random.randint(0, 14)
+        for i in range(randomNum):
+            next(reader)
         for row in reader:
             
             yield row
