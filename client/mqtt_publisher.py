@@ -1,9 +1,8 @@
-
 import paho.mqtt.client as mqtt
-
-from sensor import *
 import os
 import socket
+import random
+from sensor import *
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -37,8 +36,8 @@ class mqtt_publisher:
             Thermal = data[3]
             
             self.publish("SENSOR/HUMIDITY", self.nodeID+";"+str(Time)+";"+str(Humidity))
-            self.publish("SENSOR/THERMAL", self.nodeID+";"+str(Time)+";"+str(Thermal))
-            self.publish("SENSOR/TEMP", self.nodeID+";"+str(Time)+";"+str(Temp))    
+            self.publish("SENSOR/TEMP", self.nodeID+";"+str(Time)+";"+str(Temp))
+            self.publish("SENSOR/THERMAL", self.nodeID+";"+str(Time)+";"+str(Thermal))   
             
     def disconnect(self):
         self.client.loop_stop()
@@ -49,12 +48,16 @@ class mqtt_publisher:
 if __name__ == "__main__":
     hostname = socket.gethostname()
     IPAddr = socket.gethostbyname(hostname)
-    print("Your Computer Name is:" + hostname)
-    print("Your Computer IP Address is:" + IPAddr)
-    #eclipse mosquitto mqtt broker
-    iot_node_1 = mqtt_publisher("1002",HOST,1883)
+    print("Your Computer Name is: " + hostname)
+    print("Your Computer IP Address is: " + IPAddr)
+    iot_id = input("Enter IoT Node ID (Blank to random): ")
+    if iot_id == "" or not iot_id.isdigit():
+        iot_id = str(random.randint(1000,9999))
 
+    #eclipse mosquitto mqtt broker
+    iot_node_1 = mqtt_publisher(iot_id, HOST, 1883)
     iot_node_1.read_sensor_data()
+    iot_node_1.disconnect()
     
     
 
