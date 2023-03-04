@@ -2,11 +2,11 @@
 
 mqtt network project  
 
-Mr Chanon Khanijoh			63070503408
-Mr. Tunwa Satianrapapong	63070503419
-Mr. Napas Vinitnantharat	63070603422
-Mr. Pechdanai Saepong  		63070503434
-Ms. Fasai Sae-Tae	 		63070503436
+- Mr Chanon Khanijoh			63070503408
+- Mr. Tunwa Satianrapapong	63070503419
+- Mr. Napas Vinitnantharat	63070603422
+- Mr. Pechdanai Saepong  		63070503434
+- Ms. Fasai Sae-Tae	 		63070503436
 
 ## Files
 
