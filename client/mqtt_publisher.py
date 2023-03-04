@@ -3,6 +3,7 @@ import paho.mqtt.client as mqtt
 
 from sensor import *
 import os
+import socket
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,8 +15,10 @@ class mqtt_publisher:
         self.nodeID = nodeID
         self.host = host
         self.port = port
+
         self.client = mqtt.Client()
         self.client.connect(self.host,self.port)
+        self.client.publish("BROKER/LOGGING", f"Publisher {socket.gethostname()} with IP {socket.gethostbyname(socket.gethostname())} connected to broker")
         self.client.loop_start()
         
     def publish(self,topic,message):
@@ -35,15 +38,19 @@ class mqtt_publisher:
             
             self.publish("SENSOR/HUMIDITY", self.nodeID+";"+str(Time)+";"+str(Humidity))
             self.publish("SENSOR/THERMAL", self.nodeID+";"+str(Time)+";"+str(Thermal))
-            self.publish("SENSOR/TEMP", self.nodeID+";"+str(Time)+";"+str(Temp))
+            self.publish("SENSOR/TEMP", self.nodeID+";"+str(Time)+";"+str(Temp))    
             
     def disconnect(self):
         self.client.loop_stop()
+        self.client.publish("BROKER/LOGGING", f"Publisher {socket.gethostname()} with IP {socket.gethostbyname(socket.gethostname())} disconnected from broker")
         self.client.disconnect()
 
 
 if __name__ == "__main__":
-    
+    hostname = socket.gethostname()
+    IPAddr = socket.gethostbyname(hostname)
+    print("Your Computer Name is:" + hostname)
+    print("Your Computer IP Address is:" + IPAddr)
     #eclipse mosquitto mqtt broker
     iot_node_1 = mqtt_publisher("1002",HOST,1883)
 
