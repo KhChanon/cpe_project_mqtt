@@ -33,25 +33,33 @@ mqtt network project
  contain all the output of the sensor
 
 ### Create .env file
+```
  HOST_MQTT= mqtt.eclipseprojects.io
  PORT_MQTT= 1883
  LOCAL_HOST = 
  LOCAL_USER = 
  LOCAL_PASSWORD = 
  LOCAL_DB = 
+```
 
 ### instaling packages
+```
 pip install paho-mqtt
 pip install python-dotenv
+```
 
 ## Running the file
  ### Run broker log first by using the command
  ``` python mqtt_broker-log.py ```
 
  ### To Subscribe
- ``` cd client ```
- ``` python mqtt_subscriber.py ```
+ ``` 
+ cd client 
+ python mqtt_subscriber.py
+ ```
 
  ### To Publish
- ``` cd client ```
- ``` python mqtt_publisher.py ```
+ ``` 
+ cd client
+ python mqtt_publisher.py 
+ ```
