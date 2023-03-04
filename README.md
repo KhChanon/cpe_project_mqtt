@@ -50,7 +50,9 @@ pip install python-dotenv
 
 ## Running the file
  ### Run broker log first by using the command
- ``` python mqtt_broker-log.py ```
+ ``` 
+ python mqtt_broker-log.py 
+ ```
 
  ### To Subscribe
  ``` 
