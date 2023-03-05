@@ -32,7 +32,7 @@ mqtt network project
 ### SampleInput.csv
  contain all the output of the sensor
 
-### Create .env file
+### Create .env file and import the database from data/sensor_records.sql
 ```
  HOST_MQTT= mqtt.eclipseprojects.io
  PORT_MQTT= 1883
